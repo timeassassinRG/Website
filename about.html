@@ -9,37 +9,56 @@
         margin: 0;
         font-family: "Montserrat", sans-serif;
         background: linear-gradient(135deg, #000428, #004e92);
-        height: 100vh;
-        overflow: auto;
         color: #fff;
+        min-height: 100vh;
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 50px 0;
     }
 
-    /* Animated gradient border */
-    .neon-box {
-        padding: 40px 60px;
-        border: 4px solid;
-        border-image: linear-gradient(45deg, #ff00f7, #00d4ff) 1;
-        animation: animate-border 4s linear infinite;
-        position: relative;
+    header {
+        width: 100%;
+        padding: 20px;
         text-align: center;
-        max-width: 800px;
-        margin: 0 20px;
+        position: relative;
     }
 
-    @keyframes animate-border {
-        0% {
-            border-image: linear-gradient(45deg, #ff00f7, #00d4ff) 1;
-        }
-        50% {
-            border-image: linear-gradient(45deg, #00ff91, #ff0088) 1;
-        }
-        100% {
-            border-image: linear-gradient(45deg, #ff00f7, #00d4ff) 1;
-        }
+    .back-home {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        color: #fff;
+        text-decoration: none;
+        font-weight: bold;
+        background: #fff;
+        color: #000;
+        padding: 10px 20px;
+        border-radius: 20px;
+        transition: all 0.3s ease;
+        overflow: hidden;
+        z-index: 2;
+    }
+
+    .back-home:hover {
+        background: transparent;
+        color: #fff;
+    }
+
+    .back-home::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(120deg, #ff00f7, #00d4ff);
+        transform: skewX(-15deg);
+        transition: 0.5s;
+        z-index: -1;
+    }
+
+    .back-home:hover::before {
+        left: 100%;
     }
 
     .title {
@@ -72,99 +91,135 @@
 
     .subtitle {
         font-size: 1.2rem;
-        margin: 20px 0;
+        margin: 20px 0 40px 0;
         text-shadow: 0 0 10px #00d4ff, 0 0 20px #00d4ff;
         text-transform: uppercase;
         letter-spacing: 2px;
     }
 
+    /* Container */
+    .container {
+        width: 90%;
+        max-width: 1000px;
+        margin-bottom: 100px;
+    }
+
+    /* Section Titles */
     .section-title {
-        font-size: 1.5rem;
-        margin: 40px 0 10px;
-        text-shadow: 0 0 5px #00d4ff, 0 0 10px #00d4ff;
+        font-size: 1.8rem;
+        margin: 60px 0 20px 0;
         text-transform: uppercase;
+        text-align: center;
+        position: relative;
+        letter-spacing: 2px;
     }
 
-    .info-block {
+    .section-title::after {
+        content: "";
+        width: 100px;
+        height: 4px;
+        background: linear-gradient(90deg, #ff00f7, #00d4ff);
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: -10px;
+    }
+
+    /* Info Box */
+    .info-box {
+        background: rgba(255, 255, 255, 0.1);
+        border: 2px solid transparent;
+        border-image: linear-gradient(45deg, #ff00f7, #00d4ff) 1;
+        padding: 20px;
         margin: 20px 0;
-        line-height: 1.6;
-        text-align: left;
-    }
-
-    .info-block h3 {
-        margin-bottom: 10px;
-        font-size: 1.1rem;
-        text-shadow: 0 0 5px #ff00f7;
-        text-transform: uppercase;
-    }
-
-    .info-block p {
-        margin: 5px 0;
-        font-size: 0.95rem;
-    }
-
-    .contact-details, .education-details {
-        border-left: 4px solid #00d4ff;
-        padding-left: 20px;
-    }
-
-    .btn {
-        display: inline-block;
-        margin-top: 40px;
-        padding: 15px 30px;
-        font-size: 1rem;
-        text-decoration: none;
-        color: #000;
-        background: #fff;
-        border-radius: 30px;
-        transition: all 0.3s ease;
+        border-radius: 10px;
         position: relative;
         overflow: hidden;
+        transition: 0.3s;
     }
 
-    .btn:hover {
-        color: #fff;
-        background: transparent;
+    .info-box:hover {
+        background: rgba(255, 255, 255, 0.15);
     }
 
-    .btn::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(120deg, #ff00f7, #00d4ff);
-        transform: skewX(-15deg);
-        transition: all 0.5s ease;
+    .info-box h3 {
+        margin: 0 0 10px;
+        font-size: 1.3rem;
+        text-transform: uppercase;
+        text-shadow: 0 0 5px #ff00f7;
+        letter-spacing: 1px;
     }
 
-    .btn:hover::before {
-        left: 100%;
+    .info-box p {
+        margin: 5px 0;
+        line-height: 1.6;
+        font-size: 1rem;
     }
 
-    /* Scroll styling */
+    .contact-links a {
+        color: #00d4ff;
+        text-decoration: none;
+    }
+
+    .contact-links a:hover {
+        text-decoration: underline;
+    }
+
+    /* Scrollbar */
     ::-webkit-scrollbar {
         width: 8px;
     }
-
     ::-webkit-scrollbar-track {
         background: rgba(255,255,255,0.1);
     }
-
     ::-webkit-scrollbar-thumb {
         background: #00d4ff;
         border-radius: 10px;
     }
+
+    /* Animate border for main box */
+    @keyframes animate-border {
+        0% {
+            border-image: linear-gradient(45deg, #ff00f7, #00d4ff) 1;
+        }
+        50% {
+            border-image: linear-gradient(45deg, #00ff91, #ff0088) 1;
+        }
+        100% {
+            border-image: linear-gradient(45deg, #ff00f7, #00d4ff) 1;
+        }
+    }
+
+    /* For headings within sections */
+    .info-box strong {
+        color: #ff00f7;
+    }
+
+    /* Make titles stand out more */
+    .info-box-title {
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-top: 10px;
+        text-shadow: 0 0 5px #00d4ff;
+        font-weight: bold;
+    }
+
+    /* Slight hover effect on section titles */
+    .section-title:hover {
+        text-shadow: 0 0 10px #ff00f7, 0 0 20px #00d4ff;
+    }
+
 </style>
 </head>
 <body>
-
-    <div class="neon-box">
+    <header>
+        <a href="index.html" class="back-home">Back to Home</a>
         <h1 class="title">About Me</h1>
         <p class="subtitle">ALESSIO MEZZINA</p>
+    </header>
 
-        <div class="info-block contact-details">
+    <div class="container">
+        <div class="info-box">
             <h3>Dettagli Personali</h3>
             <p><strong>Nazionalità:</strong> Italiana</p>
             <p><strong>Data di nascita:</strong> 10/01/2001</p>
@@ -174,46 +229,119 @@
         </div>
 
         <h2 class="section-title">Istruzione</h2>
-        <div class="info-block education-details">
+
+        <div class="info-box">
             <h3>Dottorato in Informatica</h3>
-            <p><strong>Ruolo:</strong> Dottorando in Informatica</p>
-            <p>Focus sulla progettazione di motori semantici avanzati e sistemi di AI generativa (Gen AI), integrando ontologie specifiche e standard di settore. Il progetto include l'ottimizzazione di reti neurali con metauristiche per ridurre i tempi di calcolo e lo sviluppo di soluzioni innovative per la generazione automatica di contenuti.</p>
+            <p>Dottorando in Informatica con focus su motori semantici avanzati e AI generativa (Gen AI), integrando ontologie specifiche e standard di settore. Ottimizzazione di reti neurali con metauristiche per ridurre i tempi di calcolo e soluzioni innovative per la generazione automatica di contenuti.</p>
         </div>
 
-        <div class="info-block education-details">
+        <div class="info-box">
             <h3>Laurea Magistrale in Informatica (LM-18)</h3>
-            <p><strong>Università:</strong> Università degli Studi di Catania</p>
-            <p><strong>Periodo:</strong> Ottobre 2022 – Luglio 2024</p>
+            <p><strong>Università:</strong> Università degli Studi di Catania (Ottobre 2022 – Luglio 2024)</p>
             <p><strong>Indirizzo:</strong> Data Science</p>
-            <p><strong>Titolo Tesi:</strong> Real-Time Adaptive Metaheuristic for Handling Dynamic Optimization Problem. A Case Study on Dynamic Map Labeling Problem</p>
+            <p><strong>Titolo Tesi:</strong> Real-Time Adaptive Metaheuristic for Handling Dynamic Optimization Problem (Dynamic Map Labeling Problem)</p>
             <p><strong>Materia:</strong> Intelligenza Artificiale</p>
             <p><strong>Relatore:</strong> Mario Francesco Pavone</p>
-            <p><strong>Età al conseguimento:</strong> 23</p>
-            <p><strong>Durata ufficiale:</strong> 2 anni</p>
             <p><strong>Votazione finale:</strong> 110/110 con lode (25/07/2024)</p>
         </div>
 
-        <div class="info-block education-details">
+        <div class="info-box">
             <h3>Laurea Triennale in Informatica (L-31)</h3>
-            <p><strong>Università:</strong> Università degli Studi di Catania</p>
-            <p><strong>Periodo:</strong> Ottobre 2019 – Dicembre 2023</p>
+            <p><strong>Università:</strong> Università degli Studi di Catania (Ottobre 2019 – Dicembre 2023)</p>
             <p><strong>Indirizzo:</strong> Sistemi e Applicazioni</p>
             <p><strong>Titolo Tesi:</strong> Visual Sonar: simulatore di acustica subacquea e sistemi sonar</p>
-            <p><strong>Materia:</strong> Audio Processing</p>
-            <p><strong>Relatore:</strong> Milotta Filippo Luigi Maria</p>
-            <p><strong>Età al conseguimento:</strong> 21</p>
-            <p><strong>Durata ufficiale:</strong> 3 anni</p>
             <p><strong>Votazione finale:</strong> 110/110 con lode (16/12/2022)</p>
         </div>
 
-        <div class="info-block education-details">
+        <div class="info-box">
             <h3>Diploma Istituto Tecnico e Professionale</h3>
-            <p><strong>Istituto:</strong> IST. Tecnol. Ettore Majorana</p>
-            <p><strong>Periodo:</strong> Settembre 2014 – Luglio 2019</p>
+            <p><strong>Istituto:</strong> IST. Tecnol. Ettore Majorana (Settembre 2014 – Luglio 2019)</p>
             <p><strong>Votazione finale:</strong> 81/100</p>
         </div>
 
-        <a href="index.html" class="btn">Back to Home</a>
+        <h2 class="section-title">Esperienze Lavorative</h2>
+
+        <div class="info-box">
+            <h3>STMicroelectronics - SDE Intern</h3>
+            <p><strong>Periodo:</strong> Febbraio 2023 – Dicembre 2023 (11 mesi)</p>
+            <p>Creazione di Proof of Concept per l'implementazione di Power Automate Desktop. Stesura di documentazione utilizzata per sviluppare future POC. Collaborazione con un team in India, migliorando le capacità di teamwork in contesti internazionali.</p>
+        </div>
+
+        <div class="info-box">
+            <h3>Tutor fondo giovani · a contratto (A.A. 2024, 50 ore)</h3>
+            <p>Tutor per il corso di Algoritmi e Laboratorio (Corso di Laurea in Informatica L-31, DMI).</p>
+        </div>
+
+        <div class="info-box">
+            <h3>Tutor fondo giovani · a contratto (A.A. 2024, 20 ore)</h3>
+            <p>Tutor per il corso di Informatica Applicata (Corso di Laurea in Scienze Biologiche L-13, DIPBIOGEO).</p>
+        </div>
+
+        <h2 class="section-title">Attività Didattica</h2>
+
+        <div class="info-box">
+            <h3>Tirocinio Corso di abilitazione classe A041</h3>
+            <p><strong>Periodo:</strong> Ottobre 2024 – Dicembre 2024 (180 ore)</p>
+            <p><strong>Istituto:</strong> Liceo Statale “E. Boggio Lera”</p>
+            <p>Ho tenuto lezioni e seminari pomeridiani raggiungendo alti standard didattici, affrontando argomenti di livello universitario.</p>
+        </div>
+
+        <h2 class="section-title">Talks</h2>
+
+        <div class="info-box">
+            <h3>Seminario 14/12/2023</h3>
+            <p>Presso Università degli Studi di Catania (DMI). Esposizione della tesi triennale “Visual Sonar” nell’ambito del corso ‘Audio Processing’.</p>
+        </div>
+
+        <div class="info-box">
+            <h3>Dynamic Metaheuristics: 17/07/2024</h3>
+            <p>3rd International Metaheuristics Summer School (MESS 2024), Università di Catania. Presentazione: “Dynamic Metaheuristics: Enhancing Real-Time Problem Solving with Machine Learning Integration”.</p>
+            <p><a href="https://www.ants-lab.it/mess2024/" target="_blank">www.ants-lab.it/mess2024</a></p>
+        </div>
+
+        <h2 class="section-title">Partecipazione a Seminari</h2>
+        <div class="info-box">
+            <p>Seminario, 17/04/2024, 2 ore</p>
+        </div>
+
+        <h2 class="section-title">Organizzazione Eventi</h2>
+        <div class="info-box">
+            <h3>Membro del Comitato Organizzatore Locale MESS2024</h3>
+            <p><a href="https://www.ants-lab.it/mess2024/" target="_blank">www.ants-lab.it/mess2024</a></p>
+        </div>
+
+        <h2 class="section-title">Altri Percorsi Formativi</h2>
+        <div class="info-box">
+            <p>Immatricolato per DPCM60_60 Scienze e Tecnologie Informatiche (2023/2024), percorso di formazione e abilitazione docenti su posto comune per la classe A041.</p>
+        </div>
+
+        <h2 class="section-title">Pubblicazioni</h2>
+        <div class="info-box">
+            <h3>Conference Paper</h3>
+            <p><strong>Autori:</strong> Vincenzo Cutello, Alessio Mezzina, Mario Pavone, Francesco Zito</p>
+            <p><strong>Titolo:</strong> A Real-Time Adaptive Tabu Search for Handling Zoom In/Out in Map Labeling Problem</p>
+            <p><strong>Conferenza:</strong> LION18 (GRIN certified)</p>
+            <p><strong>Link:</strong> <a href="http://www.lion18.unina.it/lion18_preproocedings.pdf" target="_blank">LION18 Proceedings</a></p>
+            <p>Analizza problemi di ottimizzazione dinamici e propone metodi metaeuristici adattivi per map labeling in tempo reale.</p>
+        </div>
+
+        <div class="info-box">
+            <h3>Abstract</h3>
+            <p><strong>Autori:</strong> Alessio Mezzina, Francesco Zito</p>
+            <p><strong>Titolo:</strong> Dynamic Metaheuristics: Enhancing Real-Time Problem Solving with Machine Learning Integration</p>
+            <p><strong>Evento:</strong> MESS 2024</p>
+            <p><a href="https://www.ants-lab.it/mess2024" target="_blank">www.ants-lab.it/mess2024</a></p>
+        </div>
+
+        <h2 class="section-title">Ulteriori Seminari Frequentati</h2>
+        <div class="info-box">
+            <p><strong>09/05/2024:</strong> Cognitive Synchronization of Neurodynamics, Prof. R. Murat Demirer, Isik University (DMI)</p>
+            <p><strong>11/10/2024:</strong> From Ants to Crowds: Harnessing Competition for Optimization, Dott.ssa Carolina Crespi (DMI)</p>
+            <p><strong>18/10/2024:</strong> A Gentle Introduction to General Purpose Artificial Intelligence Systems, Prof. Isaac Triguero, University of Nottingham (DMI)</p>
+            <p><strong>22/11/2024:</strong> Teoria dei Grafi, Prof. Vincenzo Cutello (DMI)</p>
+            <p><strong>2024:</strong> Learning-Driven Optimization, Prof. Jin-Kao Hao, University di Angers (DMI)</p>
+        </div>
+
     </div>
 </body>
 </html>
