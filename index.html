@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>My Page</title>
+<style>
+    body {
+        margin: 0;
+        font-family: "Montserrat", sans-serif;
+        background: linear-gradient(135deg, #000428, #004e92);
+        height: 100vh;
+        overflow: hidden;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Animated gradient border */
+    .neon-box {
+        padding: 40px 60px;
+        border: 4px solid;
+        border-image: linear-gradient(45deg, #ff00f7, #00d4ff) 1;
+        animation: animate-border 4s linear infinite;
+        position: relative;
+        text-align: center;
+    }
+
+    @keyframes animate-border {
+        0% {
+            border-image: linear-gradient(45deg, #ff00f7, #00d4ff) 1;
+        }
+        50% {
+            border-image: linear-gradient(45deg, #00ff91, #ff0088) 1;
+        }
+        100% {
+            border-image: linear-gradient(45deg, #ff00f7, #00d4ff) 1;
+        }
+    }
+
+    .title {
+        font-size: 3rem;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        margin: 0;
+        position: relative;
+        color: #fff;
+    }
+
+    .title::before,
+    .title::after {
+        content: "";
+        position: absolute;
+        height: 4px;
+        width: 50px;
+        background: linear-gradient(90deg, #ff00f7, #00d4ff);
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .title::before {
+        left: -70px;
+    }
+
+    .title::after {
+        right: -70px;
+    }
+
+    /* Subheading with neon glow */
+    .subtitle {
+        font-size: 1.2rem;
+        margin: 20px 0 0 0;
+        text-shadow: 0 0 10px #00d4ff, 0 0 20px #00d4ff;
+    }
+
+    /* Cool buttons */
+    .button-container {
+        margin-top: 40px;
+    }
+
+    .btn {
+        display: inline-block;
+        margin: 0 10px;
+        padding: 15px 30px;
+        font-size: 1rem;
+        text-decoration: none;
+        color: #000;
+        background: #fff;
+        border-radius: 30px;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .btn:hover {
+        color: #fff;
+        background: transparent;
+    }
+
+    .btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(120deg, #ff00f7, #00d4ff);
+        transform: skewX(-15deg);
+        transition: all 0.5s ease;
+    }
+
+    .btn:hover::before {
+        left: 100%;
+    }
+
+    /* Contact info */
+    .contact {
+        margin-top: 20px;
+        font-size: 0.9rem;
+    }
+
+    .contact a {
+        color: #00d4ff;
+        text-decoration: none;
+    }
+    .contact a:hover {
+        text-decoration: underline;
+    }
+
+    /* Floating particles */
+    .particle {
+        position: absolute;
+        border-radius: 50%;
+        opacity: 0.7;
+        animation: move 10s linear infinite;
+        pointer-events: none;
+    }
+
+    .particle:nth-child(2n) {
+        background: #ff00f7;
+    }
+
+    .particle:nth-child(2n+1) {
+        background: #00d4ff;
+    }
+
+    @keyframes move {
+        0% {
+            transform: translateY(0) translateX(0);
+            opacity: 0.7;
+        }
+        50% {
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(-800px) translateX(300px);
+            opacity: 0;
+        }
+    }
+
+    /* Create multiple particles */
+    .particle:nth-child(1) { width: 5px; height: 5px; bottom: -50px; left: 10%; animation-duration: 7s;}
+    .particle:nth-child(2) { width: 10px; height: 10px; bottom: -50px; left: 30%; animation-duration: 9s; animation-delay: 2s;}
+    .particle:nth-child(3) { width: 8px; height: 8px; bottom: -50px; left: 50%; animation-duration: 6s; animation-delay: 1s;}
+    .particle:nth-child(4) { width: 6px; height: 6px; bottom: -50px; left: 70%; animation-duration: 8s; animation-delay: 3s;}
+    .particle:nth-child(5) { width: 12px; height: 12px; bottom: -50px; left: 90%; animation-duration: 10s; animation-delay: 1s;}
+
+</style>
+</head>
+<body>
+
+    <div class="neon-box">
+        <h1 class="title">Extreme Coolness</h1>
+        <p class="subtitle">Behold the neon glow, the animated borders, the ethereal particles.</p>
+        <div class="button-container">
+            <a href="http://cis-lab.dmi.unict.it/members.html" class="btn">Complex Intelligent System</a>
+            <a href="#" class="btn">About Me</a>
+        </div>
+        <p class="contact">Contact: <a href="mailto:alessio.mezzina@phd.unict.it">alessio.mezzina@phd.unict.it</a></p>
+    </div>
+
+    <!-- Particles floating upwards -->
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+
+</body>
+</html>
